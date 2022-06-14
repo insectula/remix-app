@@ -5,7 +5,7 @@ export default function () {
     return (
       <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.4" }}>
         <h1>~/routes/catalog/$categoryId/$subCategoryId/$productId.jsx = {params.productId}</h1>
-      data for {params.productId}
+      data for {params.productId} @/catalog/$categoryId/$subCategoryId/$productId
       </div>
     );
   }

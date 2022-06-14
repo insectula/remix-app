@@ -1,10 +1,12 @@
 import { Outlet } from "@remix-run/react";
+import Bullits from '~/components/bullits';
 
 export default function () {
     return (
       <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.4" }}>
-        <h1>Булиты</h1>
-        v Outlet v<br/>
+        catalog/
+        <Bullits/>
+        v Outlet v @catalog/<br/>
       <Outlet/>
       </div>
     );

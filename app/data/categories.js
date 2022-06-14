@@ -8,14 +8,14 @@ export default [
         {
                 listName: 'электроприводы', 
                 displayName: 'Электропривод', 
-                content: {...privody_protivopozharnye, ...privody_dymovye, ...privody_vozdushnye},
+                content: [...privody_protivopozharnye, ...privody_dymovye, ...privody_vozdushnye],
                 image: {}, 
                 subCategories: [
                         {
                                 listName: 'для противопожарных клапанов', 
                                 displayName: 'Электропривод механический', 
                                 image: {}, 
-                                content: {...privody_protivopozharnye},
+                                content: [...privody_protivopozharnye],
                                 subCategories: [
                                         {}, 
                                         {}]
@@ -24,7 +24,7 @@ export default [
                                 listName: 'для дымовых клапанов', 
                                 displayName: 'для дымовых клапанов КЛАПАНОВ', 
                                 image: {}, 
-                                content: {...privody_dymovye},
+                                content: [...privody_dymovye],
                                 subCategories: [
                                         {}, 
                                         {}]
@@ -33,7 +33,7 @@ export default [
                                 listName: 'для воздушных клапанов', 
                                 displayName: 'Электропривод', 
                                 image: {}, 
-                                content: {...privody_vozdushnye},
+                                content: [...privody_vozdushnye],
                                 subCategories: [
                                         {}, 
                                         {}]
@@ -45,13 +45,13 @@ export default [
                 listName: 'воздушные клапаны', 
                 displayName: 'Воздушный клапан', 
                 image: {}, 
-                content: {...example},
+                content: [...example],
                 subCategories: [
                         {
                                 listName: 'АВК', 
                                 displayName: 'АВК', 
                                 image: {}, 
-                                content: {...example},
+                                content: [...example],
                                 subCategories: [
                                         {}, 
                                         {}]
@@ -60,7 +60,7 @@ export default [
                                 listName: 'УВК', 
                                 displayName: 'УВК', 
                                 image: {}, 
-                                content: {...example},
+                                content: [...example],
                                 subCategories: [
                                         {}, 
                                         {}]
@@ -72,13 +72,13 @@ export default [
                 listName: 'противопожарные клапаны', 
                 displayName: 'ПРОТИВОПОЖАРНЫЙ КЛАПАН', 
                 image: {}, 
-                content: {...example},
+                content: [...example],
                 subCategories: [
                         {
                                 listName: 'МСУ', 
                                 displayName: 'МСУ', 
                                 image: {}, 
-                                content: {...example},
+                                content: [...example],
                                 subCategories: [
                                         {}, 
                                         {}]
@@ -87,7 +87,7 @@ export default [
                                 listName: 'нержавеющие', 
                                 displayName: 'НЕРЖАВЕЮЩИЙ', 
                                 image: {}, 
-                                content: {...example},
+                                content: [...example],
                                 subCategories: [
                                         {}, 
                                         {}]
@@ -96,7 +96,7 @@ export default [
                                 listName: 'многомтворчатые', 
                                 displayName: 'МНОГОСТВОРЧАТЫЙ', 
                                 image: {}, 
-                                content: {...example},
+                                content: [...example],
                                 subCategories: [
                                         {}, 
                                         {}]
@@ -108,13 +108,13 @@ export default [
                 listName: 'взрывозащищенные клапаны', 
                 displayName: 'ВЗРЫВОЗАЩИЩЕННЫЙ КЛАПАН', 
                 image: {}, 
-                content: {...example},
+                content: [...example],
                 subCategories: [
                         {
                                 listName: 'противопожарные', 
                                 displayName: 'ПРОТИВОПОЖАРНЫЙ', 
                                 image: {}, 
-                                content: {...example},
+                                content: [...example],
                                 subCategories: [
                                         {}, 
                                         {}]
@@ -123,7 +123,7 @@ export default [
                                 listName: 'УВК ЕХ', 
                                 displayName: 'УВК ЕХ', 
                                 image: {}, 
-                                content: {...example},
+                                content: [...example],
                                 subCategories: [
                                         {}, 
                                         {}]
@@ -132,7 +132,7 @@ export default [
                                 listName: 'АЗЕ', 
                                 displayName: 'АЗЕ', 
                                 image: {}, 
-                                content: {...example},
+                                content: [...example],
                                 subCategories: [
                                         {}, 
                                         {}]
@@ -141,7 +141,7 @@ export default [
                                 listName: 'АЗД', 
                                 displayName: 'АЗД', 
                                 image: {}, 
-                                content: {...example},
+                                content: [...example],
                                 subCategories: [
                                         {}, 
                                         {}]
@@ -153,14 +153,14 @@ export default [
                 listName: 'шкафы автоматизации', 
                 displayName: 'Шкаф', 
                 image: {}, 
-                content: {...example},
+                content: [...example],
                 subCategories: [
 
                         {
                                 listName: 'шкафы автоматизации противодымной вентиляции', 
                                 displayName: 'ШКАФ АВТОМАТИЗАЦИИ ПРОТИВОДЫМНОЙ ВЕНТИЛЯЦИИ', 
                                 image: {}, 
-                                content: {...example},
+                                content: [...example],
                                 subCategories: [
                                         {}, 
                                         {}]
@@ -170,7 +170,7 @@ export default [
                                 listName: 'управление вентиляторами дымоудаления/подпора воздуха', 
                                 displayName: 'УПРАВЛЕНИЕ ВЕНТИЛЯТОРАМИ ДЫМОУДАЛЕНИЯ/ПОДПОРА ВОЗДУХА', 
                                 image: {}, 
-                                content: {...example},
+                                content: [...example],
                                 subCategories: [
                                         {}, 
                                         {}]
@@ -180,7 +180,7 @@ export default [
                                 listName: 'управление вентиляторами подпора воздуха и электронагревателем', 
                                 displayName: 'УПРАВЛЕНИЕ ВЕНТИЛЯТОРАМИ ПОДПОРА ВОЗДУХА И ЭЛЕКТРОНАГРЕВАТЕЛЕМ', 
                                 image: {}, 
-                                content: {...example},
+                                content: [...example],
                                 subCategories: [
                                         {}, 
                                         {}]
@@ -190,7 +190,7 @@ export default [
                                 listName: 'пульт диспетчера', 
                                 displayName: 'Пульт диспетчера', 
                                 image: {}, 
-                                content: {...example},
+                                content: [...example],
                                 subCategories: [
                                         {}, 
                                         {}]
@@ -202,13 +202,13 @@ export default [
                 listName: 'вентиляторы', 
                 displayName: 'Вентилятор', 
                 image: {}, 
-                content: {...example},
+                content: [...example],
                 subCategories: [
                         {
                                 listName: 'ДУ', 
                                 displayName: 'ВЕНТИЛЯТОР ДУ', 
                                 image: {}, 
-                                content: {...example},
+                                content: [...example],
                                 subCategories: [
                                         {}, 
                                         {}]
@@ -217,7 +217,7 @@ export default [
                                 listName: 'ПД', 
                                 displayName: 'ВЕНТИЛЯТОР ПД', 
                                 image: {}, 
-                                content: {...example},
+                                content: [...example],
                                 subCategories: [
                                         {}, 
                                         {}]
@@ -226,7 +226,7 @@ export default [
                                 listName: 'осевые', 
                                 displayName: 'ВЕНТИЛЯТОР ОСЕВОЙ', 
                                 image: {}, 
-                                content: {...example},
+                                content: [...example],
                                 subCategories: [
                                         {}, 
                                         {}]
@@ -235,7 +235,7 @@ export default [
                                 listName: 'пылевые', 
                                 displayName: 'ВЕНТИЛЯТОР ПЫЛЕВОЙ', 
                                 image: {}, 
-                                content: {...example},
+                                content: [...example],
                                 subCategories: [
                                         {}, 
                                         {}]
@@ -244,7 +244,7 @@ export default [
                                 listName: 'ВКР крышные', 
                                 displayName: 'ВЕНТИЛЯТОР ВКР КРЫШНЫЙ', 
                                 image: {}, 
-                                content: {...example},
+                                content: [...example],
                                 subCategories: [
                                         {}, 
                                         {}]
@@ -256,13 +256,13 @@ export default [
                 listName: 'элементы монтажа', 
                 displayName: '', 
                 image: {}, 
-                content: {...example},
+                content: [...example],
                 subCategories: [
                         {
                                 listName: 'компенсаторы линейных расширений', 
                                 displayName: 'КОМПЕНСАТОР ЛИНЕЙНЫХ РАСШИРЕНИЙ', 
                                 image: {}, 
-                                content: {...example},
+                                content: [...example],
                                 subCategories: [
                                         {}, 
                                         {}]
@@ -271,7 +271,7 @@ export default [
                                 listName: 'узлы прохода', 
                                 displayName: 'УЗЕЛ ПРОХОДА', 
                                 image: {}, 
-                                content: {...example},
+                                content: [...example],
                                 subCategories: [
                                         {}, 
                                         {}]
@@ -280,7 +280,7 @@ export default [
                                 listName: 'стаканы монтажные', 
                                 displayName: 'СТАКАН МОНТАЖНЫЙ', 
                                 image: {}, 
-                                content: {...example},
+                                content: [...example],
                                 subCategories: [
                                         {}, 
                                         {}]
@@ -289,7 +289,7 @@ export default [
                                 listName: 'решетки РДКМ', 
                                 displayName: 'РЕШЕТКА РДКМ', 
                                 image: {}, 
-                                content: {...example},
+                                content: [...example],
                                 subCategories: [
                                         {}, 
                                         {}]
@@ -298,7 +298,7 @@ export default [
                                 listName: 'решетки фасадные', 
                                 displayName: 'РЕШЕТКА ФАСАДНАЯ', 
                                 image: {}, 
-                                content: {...example},
+                                content: [...example],
                                 subCategories: [
                                         {}, 
                                         {}]
@@ -307,7 +307,7 @@ export default [
                                 listName: 'дефлекторы', 
                                 displayName: 'ДЕФЛЕКТОР', 
                                 image: {}, 
-                                content: {...example},
+                                content: [...example],
                                 subCategories: [
                                         {}, 
                                         {}]

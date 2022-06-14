@@ -5,7 +5,7 @@ export default function () {
     return (
       <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.4" }}>
         <h1></h1>
-        v Outlet v<br/>
+        v Outlet v @catalog/$categoryId/$subCategoryId<br/>
       <Outlet/>
       </div>
     );

@@ -1,0 +1,15 @@
+{ 
+   "elegance.mysql.databases": [
+        {
+            "name": "local",
+            "host": "127.0.0.1",
+            "port": 3306,
+            "user": "root",
+            "password": "aimvent",
+            "schemaFilterEnable": false,
+            "showSchemas": []
+        }
+    ],
+    "elegance.mysql.logLevel": "DEBUG", //log level for elegance_mysql extension.
+    "elegance.mysql.securityDisplayed": false //show a known security issue when this extension startup.
+}

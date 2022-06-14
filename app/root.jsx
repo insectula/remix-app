@@ -32,7 +32,7 @@ export default function App() {
   return(
     <Document>
       <Layout>
-      v Outlet v<br/>
+      v Outlet v @root<br/>
         <Outlet />
       </Layout>
     </Document>
@@ -85,45 +85,64 @@ function Layout({children}) {
         </Col>
         <Col md='7' style={{border: '1px solid'}}>
           <Row>
-            <Col md='4'>
+            <Col md={{span: 3, offset: 1}}>
               <a href="mailto:fenixklapan@yandex.ru">
-                <h5 style={{margin: 0, padding: 0}}>
-                  fenixklapan@yandex.ru
-                </h5>
-                <span style={{verticalAlign: 'top', padding: 0, marginTop: '3px', fontSize: '.75rem', color: 'grey',}}>
-                  электронная почта
-                </span>
+                <div className="contactItem flex column cRight">
+                  <h5 style={{margin: 0, padding: 0}}>
+                    fenixklapan@yandex.ru
+                  </h5>
+                  <span>
+                    электронная почта
+                  </span>
+                </div>
               </a>
             </Col>
             <Col md='3'>
               <a href="tel:+7(960)067-01-08">
+              <div className="contactItem flex column cRight">
                 <h5 style={{margin: 0, padding: 0}}>
                   +7 (960) 067-01-08
                 </h5>
-                <span style={{padding: 0, marginTop: '3px', fontSize: '.75rem', color: 'grey',}}>
+                <span>
                   телефон в Москве
                 </span>
+                </div>
               </a>
             </Col>
             <Col md='3'>
                 <a href="tel:+7(960)067-01-08">
+                <div className="contactItem flex column cRight">
                   <h5 style={{margin: 0, padding: 0}}>
                     8 (800) 000-00-00
                   </h5>
-                  <span style={{padding: 0, marginTop: '3px', fontSize: '.75rem', color: 'grey',}}>
+                  <span>
                     бесплатно по России
                   </span>
+                  </div>
                 </a>
             </Col>
-            <Col md='2'>
-                    <Button onClick={feedbackOpen} sx={{width: '180px', height: '35px', fontFamily: 'Roboto',fontWeight: 400, fontSize: '.75rem',borderRadius: 0,color: 'white', backgroundColor: '#ff6429', '&:hover': {backgroundColor: '#d67f06'}}}>отправить заявку</Button>
+            <Col md='2' style={{padding:0, alignSelf:'center'}}>
+                    <Button onClick={feedbackOpen} sx={{width: '100%', height: '35px', fontFamily: 'Roboto',fontWeight: 400, fontSize: '.75rem',borderRadius: 0,color: 'white', backgroundColor: '#ff6429', '&:hover': {backgroundColor: '#d67f06'}}}>отправить заявку</Button>
                     <FeedbackModal open={feedback} handleClose={feedbackClose}/>
             </Col>
           </Row>
         </Col>
       </Row>
       <Row>
-        <h1>Шапка</h1>
+          <Col style={{marginTop: '20px'}}>
+            <div style={{display: 'flex', fontWeight: 400}}>
+              <div className='menu' style={{display: 'flex', flexDirection:'column', marginRight:'30px'}}><Link to="/documents">Документация</Link></div>
+              <div className='menu' style={{display: 'flex', flexDirection:'column', marginRight:'30px'}}><Link to="/objects">Объекты</Link></div>
+              <div className='menu' style={{display: 'flex', flexDirection:'column', marginRight:'30px'}}><Link to="/contacts">Контакты</Link></div>
+            </div>
+          </Col>
+      </Row>
+      <Row>
+        
+        
+
+
+
         <Col>
         {children}
         </Col>
@@ -137,7 +156,7 @@ const DeleteMe = () => {
   return(
     <Container fluid style={{border: '1px solid red', margin:'-30px 55px', position: 'absolute', maxWidth: 1800}}>
       <Row> 
-        <Col style={{border: '1px solid red', height:'100vh'}} sm='1' />
+        <Col style={{border: '1px solid red', height:'100vh'}} sm='1' > root </Col>
         <Col style={{border: '1px solid red', height:'100vh'}}  sm='1' />
         <Col style={{border: '1px solid red', height:'100vh'}}  sm='1' />
         <Col style={{border: '1px solid red', height:'100vh'}}  sm='1' />
