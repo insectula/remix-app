@@ -1,7 +1,14 @@
 @font-face {
     font-family: 'GothamPro';
     src: local(''),
-         url('/fonts/gothampro/gothampro_blackitalic.ttf') format('truetype')
+         url('/fonts/gothampro/gothampro.ttf') format('truetype')
+}
+
+body {
+    padding-left: 55px;
+    padding-right: 55px;
+    margin: 0;
+    font-family:  'Roboto','GothamPro', sans-serif;
 }
 
 a {
@@ -12,6 +19,11 @@ a {
 a:hover {
     color: black;
     text-decoration:none;    
+}
+
+
+h1 {
+    font-weight: bold;
 }
 
 h5 {
@@ -25,9 +37,11 @@ h5:hover {
 
 .mainFrame {
     position: relative;
-    max-width: 1800px;
-    margin: 30px 55px;
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
+
+
 
 .headerRow{
     align-items: center;
@@ -36,6 +50,8 @@ h5:hover {
     color: #333;
     font-family: 'GothamPro';
     font-size: 13px; 
+    font-style: italic;
+    font-weight: bold;
     line-height: 1; 
     text-transform: uppercase;
     vertical-align: middle;
@@ -44,6 +60,7 @@ h5:hover {
 }
 .logo {
     height: 50px;
+    float: left;
 }
 
 .menu {
@@ -63,10 +80,13 @@ h5:hover {
 }
 
 .contactItem {
+    float:right;
+    margin-right: 10px;
     width: fit-content;
 }
 .contactItem span {
     display: flex;
+    flex-wrap: wrap;
     justify-self: flex-start;
     color: grey;
     font-size: .75rem; 
@@ -77,6 +97,40 @@ h5:hover {
     margin-top: 0; 
     padding: 0
 }
+
+
+.catMenu {
+    padding: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    text-align: right;
+    width:260px;
+    background-color: white;
+    border: none;
+    font-size: 12px;
+}
+.submenu {
+    padding: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+    min-width:500px;
+    background-color: white;
+    border: none;
+    font-size: 12px;
+}
+.submenu:hover {
+    background-color: #edf0f6;
+}
+.submenu span {
+    margin-left: 15px;
+    font-size: 8px;
+}
+
+
+
 
 .flex {
     display: flex;
@@ -96,4 +150,32 @@ h5:hover {
 .center {
     justify-content: center;
     align-items: center;
+}
+
+
+.col {
+    padding:0;
+    margin:0;
+}
+
+.notFound {
+    width: 100%;
+    height: 300px;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.cart-hr {
+    background-color: #ccc;
+    height: 1px;
+    width:100%;
+}
+
+.aimrow {
+    display:flex;
+}
+.aimcol {
+    display:flex;
+    flex-direction:column;
 }

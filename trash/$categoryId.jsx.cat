@@ -1,14 +1,13 @@
+import { prisma } from '~/db';
 import { Outlet, useLoaderData } from "@remix-run/react";
 import { Col, Row } from "react-bootstrap";
 import categories from'~/data/categories'
 
 
 export const loader = async({params}) => {
-//  params.subCategoryId
-let data = {}
 
+/*let data = {}
 data.cat = categories.find((category) => category.listName === params.categoryId);
-console.log('11', data.cat)
 if (params.subCategoryId) { 
   console.log('13', params.subCategoryId, '=>', params.subCategoryId.toLowerCase())
   if (data.cat.content.find((product) => product.id === params.subCategoryId.toLowerCase())) {
@@ -20,20 +19,33 @@ if (params.subCategoryId) {
   data.subCat = 'none';
   data.product =  data.cat.content[0];
 }
-console.log('21', {...data})
-return({...data})
+console.log([...data])*/
+
+
+const data = {};
+data.params = params
+data.products = await prisma.products.findMany({
+  where: {
+    category: params.categoryId,
+    published: true
+  },
+})
+
+return(data)
 }
 
 export default function () {
   const data = useLoaderData();
     return (
       <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.4" }}>
-        catalog/$categoryId
+        {data.params.categoryId}
+        {data.params.subCategoryId}
+        {data.params.productId}
         <h1>
-          <CategoryText data={data}/>
+    {data.products[0].title}
         </h1>
+        {data.products[0].content}
         v Outlet v @catalog/$categoryId<br/>
-      <Outlet/>
       </div>
     );
   }
@@ -41,15 +53,15 @@ export default function () {
 
   const CategoryText = (props) => {
     const data = {};
-    if (props.data.subCat !== 'none') {
-      data.category = props.data.subCat.displayName
+    if (props.data.subcategory !== 'none') {
+      data.category = props.data.subcategory
     } else {
-      data.category = props.data.cat.displayName
+      data.category = props.data.category
     }
     if (props.data.product !== 'none') {
       data.product = props.data.product.title
     } else {
-      data.product = props.data.cat.content[0].title
+      data.product = props.data.category.content[0].title
     }
-    return(<Row><Col md='3'>{data.category}</Col><Col md='3'>{data.product}</Col></Row>)
+    return(<Row>      //<CategoryText data={data}/>//   <Col md='3'>{data.category}</Col><Col md='3'>{data.product}</Col></Row>)
   }

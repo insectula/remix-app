@@ -1,8 +1,35 @@
-prisgenerator client {
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "mysql"
   url      = env("DATABASE_URL")
+}
+
+model Catalog {
+  id Int @id @default(autoincrement())
+  parentId Int
+  category String  
+  cat Products[] @relation("fk_cat")
+  subcat Products[] @relation("fk_subcat")
+}
+model Products {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  title     String   
+  content   String
+  hidden    String
+  picture   String
+  name      String
+  filter    String
+  published Boolean  @default(false)
+  category_id Int
+  subcategory_id Int
+  fk_cat Catalog? @relation("fk_cat", fields: category_id, references: id)
+  fk_subcat Catalog? @relation("fk_subcat", fields: subcategory_id, references: id)
 }
