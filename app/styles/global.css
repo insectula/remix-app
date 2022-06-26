@@ -3,6 +3,11 @@
     src: local(''),
          url('/fonts/gothampro/gothampro.ttf') format('truetype')
 }
+@font-face {
+    font-family: 'GothamProItalic';
+    src: local(''),
+         url('/fonts/gothampro/gothampro_italic.ttf') format('truetype')
+}
 
 body {
     background-color: #fafafa;
@@ -143,8 +148,17 @@ h5:hover {
     justify-content: center;
     gap:10px;
     width: 90%;
-    margin-top: 10px;
+    margin-top: 40px;
     margin-bottom: 0px;
+}
+.categoryName {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 2rem;
+    pointer-events: none;
 }
 .category {
     display: flex;
@@ -169,6 +183,76 @@ h5:hover {
     height:95px;
     z-index: 111    ;
 }
+.category:after{
+    content:"";
+    position:absolute;
+    height:0;
+    width:0;
+    left: calc(50% - 50px);
+    top:100%;
+    border:50px solid transparent;
+    border-top: 7px solid transparent;
+    pointer-events: none;
+    z-index: 111;
+}
+.category:hover  {
+    border-color: #ff6429;
+}
+.category:hover:after {
+    border:50px solid transparent;
+    border-top: 7px solid #ff6429;
+    z-index: 111;
+}
+
+.subCatSelector {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top:110px;
+    left:-1px;
+    align-items: baseline;
+    border-radius: 10px;
+    min-width: 280px;
+    margin-left: -60px;
+    margin-right: -60px;
+    background-color: #fff;
+    padding-top: 15px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    z-index: 88;
+}
+.subCategoryHelper {
+    background-color: rgba(255,255,255,.01);
+    position: absolute;
+    bottom: -19px;
+    height:20px;
+    width:150px;
+    z-index: 1000;
+}
+.subCategory {
+    display: flex;
+    flex-wrap: wrap;
+    position:relative;
+    text-align: left;
+    align-items: center;
+    font-size: 12px;
+    width:100%;
+    min-height: 2.5rem;
+    line-height: 1.2;
+    color: #555;
+    padding: 5px    ;
+    padding-left: 15px;
+    margin:0;
+    border:none;
+    border-left:1px solid transparent;
+    background-color: transparent;
+}
+.subCategory:hover {
+    color: #333;
+    font-weight: 600;
+    border-left:2px solid #ff6429;
+}
+
 
 .flex {
     display: flex;

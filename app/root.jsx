@@ -14,6 +14,7 @@ import {Button, Container, createTheme, Grid, IconButton, InputBase, Paper, Them
 import CartModal from './components/modules/cartModal';
 import Catalog from './components/modules/dropdownMenu';
 import FeedbackModal from '~/components/modules/feedbackModal';
+import Footer from '~/components/modules/footer';
 import Logo from '~/assets/SVG/logo.svg';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import SearchIcon from '@mui/icons-material/Search';
@@ -287,8 +288,7 @@ function Layout({children, context}) {
       </Grid>
 
         {children}
-
+      <Footer/>
     </Container>
-
     </>)
 }

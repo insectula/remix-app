@@ -8,17 +8,16 @@ import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
 import Bullits from '~/components/modules/bullits';
-import CatalogMenu from '~/components/modules/MENU';
 import Switch from '~/components/elements/switch';
 import Filter from '~/assets/PNG/filter.png';
 import dino from '~/assets/PNG/dino.png';
 import { Link, useOutletContext } from "@remix-run/react";
-
-
+import Menu from '~/components/modules/menu';
 
 
 export default function ProductCard({data}) {
     const [cartItems, setCartItems, catalog] = useOutletContext();
+
     const HiddenConent = ({ content }) => {
       const [showMore, setShowMore] = useState(false);
       const handleShowMore = () => {
@@ -87,18 +86,10 @@ export default function ProductCard({data}) {
           <div className="pageTitle">
                 <span style={{fontSize: '30px'}}>Каталог</span>
           </div>
-          <div style={{display: 'flex'}}>
-          {catalog.map((category, key)=> {
-      
-            return category.parentId === 0 && (
-                <CatalogMenu category={category} catalog={catalog} />
-            )}
-          )}
-          </div>
-          <div style={{marginTop: '40px', marginLeft: '-82px', marginRight: '-82px', backgroundColor: '#edf0f6', }}>
+        <Menu catalog={catalog}/>
+          <div style={{marginTop: '20px', marginLeft: '-82px', marginRight: '-82px', backgroundColor: '#edf0f6', }}>
               <div style={{
                   position: 'relative', zIndex: 50, padding: '30px', display: 'flex', justifySelf: 'flex-start', flexDirection: 'column',
-                  
                   backgroundImage: `url(${dino})`,
                   backgroundRepeat: 'no-repeat',
                   backgroundSize: 'contain',

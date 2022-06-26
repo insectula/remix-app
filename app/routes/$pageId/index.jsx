@@ -1,6 +1,6 @@
 import { useLoaderData } from "@remix-run/react";
 import { prisma } from '~/db';
-import Catalog from "~/components/pages/catalog";
+import ProductCard from "~/components/pages/productCard";
 import Contacts from "~/components/pages/contacts";
 import desert from "~/assets/JPG/desert.jpg";
  
@@ -40,7 +40,7 @@ export const loader = async({params}) => {
 export default function() {
   const data = useLoaderData();
   if (['каталог', 'Каталог', 'КАТАЛОГ'].includes(data.params.pageId)) {
-      return <Catalog data={data}/>
+      return <ProductCard data={data} />
   } 
   else if (['контакты', 'Контакты', 'КОНТАКТЫ'].includes(data.params.pageId)) {
       return <Contacts/>

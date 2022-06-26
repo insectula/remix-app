@@ -1,53 +1,44 @@
 import * as React from 'react';
-import Button from '@mui/material/Button';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
+import SettingsIcon from '@mui/icons-material/Settings';
+import { useNavigate } from '@remix-run/react';
 
-export default function CatalogMenu({category, catalog}) {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
+export default function Menu({catalog}) {
+  const [item, setItem] = React.useState('');  // если subcat = item показать
+  const navigate = useNavigate();
 
-  const handleExpand = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  return (
-
-<>
-      <Button
-        id="basic-button"
-        className='category'
-        aria-controls={open ? 'basic-menu' : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
-        onMouseOver={handleExpand}
-      >
-        {category.category.replace(/_/g, ' ')}
-      </Button>
-      <Menu
-        id="basic-menu"
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        PaperProps={{sx: {boxShadow: 'none'}}}
-        MenuListProps={{
-          'aria-labelledby': 'basic-button',
-           
-        }}
-      >
-        {catalog.map((subCategory, key)=> {
-          return subCategory.parentId === category.id && (
-            <MenuItem onClick={handleClose}>
-              {subCategory.category.replace(/_/g, ' ')}
-            </MenuItem>
-          )
-        })}
-      </Menu>
-</>
-
-
-  );
+  const handleItem = (value) => {
+    setItem(value)
+  }
+  const clearItem = () => {
+    setItem('')
+  }
+  const handleClick = (e) => {
+    navigate(`/Каталог/${e.target.value}`, { replace: true });
+  }
+  return (<div className="categorySelector" onMouseLeave={clearItem}>
+    {catalog.map((category, key) => {
+      return category.parentId===0?(
+        <div key={key} style={{position: 'relative'}}>
+          <button value={category.category} onMouseOver={() => handleItem(category.category)} onClick={handleClick} className='category'>
+                <SettingsIcon sx={{color:"#555", pointerEvents: 'none'}} fontSize='large'/>
+                <div className='categoryName'> 
+                    {category.category.replace(/_/g, ' ')} 
+                </div>
+                <div onMouseOver={() => handleItem(category.category)} className='subCategoryHelper'/>
+          </button>
+          <div className='subCatSelector column' style={{display: (category.category === item)?'flex':'none'}}>
+          {catalog.map((subCat = {}, key) => {
+                      return subCat.parentId===category.id?(
+                          <button key={key} value={category.category + '/' + subCat.category} onMouseOver={() => handleItem(category.category)} onClick={handleClick} className='subCategory'>
+                              {subCat.category.replace(/_/g, ' ')}
+                          </button>
+                      ):(null)
+            })
+          }
+          </div>
+        </div>
+      ):(null)
+    })}
+  </div>
+  )
 }

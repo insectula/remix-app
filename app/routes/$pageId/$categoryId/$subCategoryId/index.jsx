@@ -1,6 +1,6 @@
 import { useLoaderData } from "@remix-run/react";
 import { prisma } from '~/db';
-import Catalog from "~/components/pages/catalog"
+import ProductCard from "~/components/pages/productCard";
 
 export const loader = async({params}) => {
   const data = {};
@@ -114,7 +114,7 @@ export const loader = async({params}) => {
 export default function() {
   const data = useLoaderData();
   if (['каталог', 'Каталог', 'КАТАЛОГ'].includes(data.params.pageId)) {
-      return <Catalog data={data}/>
+      return <ProductCard data={data} />
   } else {
       return <div style={{marginTop: '200px', marginLeft: 'auto', marginRight: 'auto', display: 'flex', justifyContent: 'center', fontSize: '2.5em', fontWeight: 600}}>Страница не найдена</div>
   }

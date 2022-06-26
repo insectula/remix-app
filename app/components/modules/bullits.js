@@ -18,7 +18,7 @@ export default function Bullits() {
           
           </h2>
         </div>
-        <Container maxWidth="xl">
+
         <Grid container direction={md?'row':'column'} sx={{justifyContent: 'center', alignItems:'center'}}>
           <Grid item md={3}><div className='flex center'>
             <RussiaIcon sx={{color:'#ff6429'}} />
@@ -32,7 +32,7 @@ export default function Bullits() {
             <AvTimerIcon sx={{color:'#ff6429'}} fontSize='medium'/>
             <span style={{marginLeft: '5px'}}>Короткие сроки производства</span>
           </div></Grid>
-        </Grid></Container>
+        </Grid>
       </>
   );
 }
