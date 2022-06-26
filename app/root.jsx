@@ -9,27 +9,24 @@ import {
   ScrollRestoration,
   useLoaderData
 } from "@remix-run/react";
-import bootstrapCss from 'bootstrap/dist/css/bootstrap.min.css';
 import globalCss from '~/styles/global.css'
-import { Container, Col, Row } from "react-bootstrap";
-import { Button, IconButton, InputBase, Paper } from '@mui/material';
-import CartModal from './components/cartModal';
-import Catalog from './components/dropdownMenu';
-import FeedbackModal from '~/components/feedbackModal';
+import {Button, Container, createTheme, Grid, IconButton, InputBase, Paper, ThemeProvider } from '@mui/material';
+import CartModal from './components/modules/cartModal';
+import Catalog from './components/modules/dropdownMenu';
+import FeedbackModal from '~/components/modules/feedbackModal';
 import Logo from '~/assets/SVG/logo.svg';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import SearchIcon from '@mui/icons-material/Search';
 import { prisma } from '~/db';
-//import catalog from './routes/catalog';
+//import catalog from './routes/Каталог';
 export const links = () => ([
- // {rel: 'stylesheet', href: bootstrapCss},
   {rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Roboto&display=swap'},
   {rel: 'stylesheet', href: globalCss}
 ])
 
 export const meta = () => ({
   charset: "utf-8",
-  title: "New Remix App",
+  title: "Промышленные системы вентиляции",
   viewport: "width=device-width,initial-scale=1",
 });
 
@@ -40,13 +37,44 @@ export const loader = async({params}) => {
 }
 
 
+const psvTheme = createTheme({
+  palette: {
+    info: {
+      main: 'rgba(0, 0, 0, 0.6)'
+    }
+  },
+  components: {
+      MuiAccordionSummary: {
+          styleOverrides: {
+              root: {
+                  cursor: "default",
+                  "&:hover": {
+                      cursor: "default"
+                  }
+              },
+              content: {
+                  alignItems: 'center',
+                  minHeight: '48px',
+                  cursor: "default",
+                  "&:hover": {
+                      cursor: "default"
+                  }
+              }
+          }
+      }
+  }
+});
+
 export default function App({data}) {
   const catalog = useLoaderData();
+  const [cartItems, setCartItems] = useState([]);
   return(
     <Document>
-      <Layout catalog={catalog}>
-        <Outlet context={catalog}/>
+      <ThemeProvider theme={psvTheme}>
+      <Layout context={[cartItems, setCartItems, catalog]}>
+        <Outlet context={[cartItems, setCartItems, catalog]}/>
       </Layout>
+      </ThemeProvider>
     </Document>
   )
 }
@@ -74,16 +102,16 @@ function useForceUpdate(){
   return () => setRenders(renders => renders + 1); // update the state to force render
 }
 
-function Layout({children, catalog}) {
+function Layout({children, context}) {
   const forceUpdate = useForceUpdate();  
-
+  const [cartItems, setCartItems, catalog] = context;
   const [dropdown, setDropdown]= useState(false);
   const [feedback, setFeedback] = useState(false);
   const [cart, setCart] = useState(false);
   const [category, setCategory] = useState('');
   const [good, setGood] = useState('nanotek-lf230-b');
 
-  const [cartItems, setCartItems] = useState([]);
+
   
   const removeItem = (productId) => {
     console.log('remove',productId)
@@ -160,23 +188,23 @@ function Layout({children, catalog}) {
 
 
   return(<>
-    <Container fluid className="mainFrame" >
+    <Container maxWidth="xxl" className="mainFrame" >
       
-      <Row className="headerRow">
-        <Col className="col" lg='3'>
+      <Grid container spacing={2} className="headerRow">
+        <Grid item lg={3}>
           <Link to="/">
             <img className='logo' src={Logo}/>
           </Link>
-        </Col>
-        <Col className="col" lg='3'>
+        </Grid>
+        <Grid item lg={3}>
           <h4 className='headerText'>
             противопожарные клапаны и вентиляционное
             оборудование от производителя
           </h4>
-        </Col>
-        <Col lg='6'>
-          <Row>
-            <Col className="col" lg='3'>
+        </Grid>
+        <Grid item lg={6}>
+          <Grid container>
+            <Grid item lg={3}>
               <a href="mailto:fenixklapan@yandex.ru">
                 <div className="contactItem flex column cRight">
                   <h5 style={{margin: 0, padding: 0}}>
@@ -187,8 +215,8 @@ function Layout({children, catalog}) {
                   </span>
                 </div>
               </a>
-            </Col>
-            <Col className="col" lg='3'>
+            </Grid>
+            <Grid item className="col" lg={3}>
               <a href="tel:+7(960)067-01-08">
               <div className="contactItem flex column cRight">
                 <h5 style={{margin: 0, padding: 0}}>
@@ -199,8 +227,8 @@ function Layout({children, catalog}) {
                 </span>
                 </div>
               </a>
-            </Col>
-            <Col className="col" lg='3'>
+            </Grid>
+            <Grid item className="col" lg={3}>
                 <a href="tel:+7(960)067-01-08">
                 <div className="contactItem flex column cRight">
                   <h5 style={{margin: 0, padding: 0}}>
@@ -211,25 +239,25 @@ function Layout({children, catalog}) {
                   </span>
                   </div>
                 </a>
-            </Col>
-            <Col className="col" lg='3' style={{alignSelf:'center'}}>
+            </Grid>
+            <Grid item className="col" lg={3} style={{alignSelf:'center'}}>
                     <Button onClick={feedbackOpen} sx={{float: 'right', minWidth: '180px', height: '35px', fontFamily: 'Roboto',fontWeight: 400, fontSize: '.75rem',borderRadius: 0,color: 'white', backgroundColor: '#ff6429', '&:hover': {backgroundColor: '#d67f06'}}}>отправить заявку</Button>
                     <FeedbackModal open={feedback} handleClose={feedbackClose}/>
-            </Col>
-          </Row>
-        </Col>
-      </Row>
-      <Row>
-          <Col className="col" style={{marginTop: '30px'}}>
+            </Grid>
+          </Grid>
+        </Grid>
+      </Grid>
+      <Grid container>
+          <Grid item className="col" style={{marginTop: '30px'}}>
             <div style={{display: 'flex', fontWeight: 400}}>
-              <div className='menu' style={{display: 'flex', flexDirection:'column', marginRight:'30px'}}><Link to="/documents">Документация</Link></div>
-              <div className='menu' style={{display: 'flex', flexDirection:'column', marginRight:'30px'}}><Link to="/objects">Объекты</Link></div>
-              <div className='menu' style={{display: 'flex', flexDirection:'column', marginRight:'30px'}}><Link to="/contacts">Контакты</Link></div>
+              <div className='menu' style={{display: 'flex', flexDirection:'column', marginRight:'30px'}}><Link to="/Документация">Документация</Link></div>
+              <div className='menu' style={{display: 'flex', flexDirection:'column', marginRight:'30px'}}><Link to="/Объекты">Объекты</Link></div>
+              <div className='menu' style={{display: 'flex', flexDirection:'column', marginRight:'30px'}}><Link to="/Контакты">Контакты</Link></div>
             </div>
-          </Col>
-      </Row>
-      <Row>
-          <Col className="col" lg="12" style={{position: 'relative', marginTop: '20px'}}>
+          </Grid>
+      </Grid>
+      <Grid container>
+          <Grid item className="col" lg={12} style={{position: 'relative', marginTop: '20px'}}>
           <div style={{display: 'flex', justifySelf: 'flex-start'}}>
             <div style={{display: 'flex', flexDirection:'column'}}>
               <Button sx={{minWidth: '180px',height: '50px',fontFamily: 'Roboto',fontWeight: 600, fontSize: '14px', borderRadius: '0',color: 'white', backgroundColor: '#ff6429', '&:hover': {backgroundColor: '#d67f06'}}} onMouseOver={catalogOpen}>Каталог&nbsp;<span style={{fontSize: '8px'}}> ▶</span></Button>
@@ -255,39 +283,12 @@ function Layout({children, catalog}) {
           {dropdown && 
                           <Catalog position='first'catalogClose={catalogClose} categories={catalog} />
           }
-        </Col>
-      </Row>
-      <Row>  
+        </Grid>
+      </Grid>
 
-
-
-        <Col>
         {children}
-        </Col>
-      </Row>
+
     </Container>
 
     </>)
-}
-
-
-const DeleteMe = () => {
-  return(
-    <Container className="mainFrame" fluid style={{position: 'relative', zIndex: 999,border: '1px solid red'}}>
-      <Row> 
-        <Col className="col" style={{border: '1px solid red', height:'100vh'}}  sm='1' />
-        <Col className="col" style={{border: '1px solid red', height:'100vh'}}  sm='1' />
-        <Col className="col" style={{border: '1px solid red', height:'100vh'}}  sm='1' />
-        <Col className="col" style={{border: '1px solid red', height:'100vh'}}  sm='1' />
-        <Col className="col" style={{border: '1px solid red', height:'100vh'}}  sm='1' />
-        <Col className="col" style={{border: '1px solid red', height:'100vh'}}  sm='1' />
-        <Col className="col" style={{border: '1px solid red', height:'100vh'}}  sm='1' />
-        <Col className="col" style={{border: '1px solid red', height:'100vh'}}  sm='1' />
-        <Col className="col" style={{border: '1px solid red', height:'100vh'}}  sm='1' />
-        <Col className="col" style={{border: '1px solid red', height:'100vh'}}  sm='1' />
-        <Col className="col" style={{border: '1px solid red', height:'100vh'}}  sm='1' />
-        <Col className="col" style={{border: '1px solid red', height:'100vh'}}  sm='1' />
-      </Row>
-    </Container>
-  )
 }
