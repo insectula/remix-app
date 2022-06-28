@@ -216,6 +216,7 @@ export default function ProductCard({data}) {
       setCartItems(data);
       localStorage.setItem('products', JSON.stringify(data));
     }
+    
       return (
         <>
           <Bullits/>
@@ -227,7 +228,7 @@ export default function ProductCard({data}) {
           <div style={{marginTop: '20px', marginLeft: '-82px', marginRight: '-82px', backgroundColor: '#edf0f6', }}>
               <div style={{
                   position: 'relative', zIndex: 50, padding: '30px', display: 'flex', justifySelf: 'flex-start', flexDirection: 'column',
-                  backgroundImage: `url(${dino})`,
+                  backgroundImage: `url(${data.product.picture})`,
                   backgroundRepeat: 'no-repeat',
                   backgroundSize: 'contain',
                   backgroundPosition: 'top right'

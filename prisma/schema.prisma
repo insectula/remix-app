@@ -28,8 +28,8 @@ model Products {
   name      String
   filter    String
   published Boolean  @default(false)
-  category_id Int
-  subcategory_id Int
+  category_id Int? 
+  subcategory_id Int? 
   fk_cat Catalog? @relation("fk_cat", fields: category_id, references: id)
   fk_subcat Catalog? @relation("fk_subcat", fields: subcategory_id, references: id)
 }
